@@ -41,6 +41,9 @@ function copyDir(src, dest, dryRun) {
     } else if (entry.isFile()) {
       fs.copyFileSync(from, to);
     } else if (entry.isSymbolicLink()) {
+      if (fs.existsSync(to)) {
+        fs.rmSync(to, { force: true });
+      }
       const target = fs.readlinkSync(from);
       fs.symlinkSync(target, to);
     } else {
@@ -56,6 +59,19 @@ function writeFile(dest, content, dryRun) {
   }
   fs.mkdirSync(path.dirname(dest), { recursive: true });
   fs.writeFileSync(dest, content);
+}
+
+function removeDir(dest, dryRun) {
+  if (!fs.existsSync(dest)) {
+    return;
+  }
+
+  if (dryRun) {
+    console.log(`[dry-run] remove ${dest}`);
+    return;
+  }
+
+  fs.rmSync(dest, { recursive: true, force: true });
 }
 
 function parseArgs(args) {
@@ -76,16 +92,14 @@ function parseArgs(args) {
 
 function init(target, dryRun) {
   const skillsSrc = path.join(root, "skills");
-  const docsSrc = path.join(root, "docs");
-  const templatesSrc = path.join(root, "templates");
   const upstreamSrc = path.join(root, "upstream");
   const pystackRoot = path.join(target, ".pystack");
   const pystackSkillsRoot = path.join(pystackRoot, "skills");
 
   copyDir(skillsSrc, pystackSkillsRoot, dryRun);
   copyDir(upstreamSrc, path.join(pystackSkillsRoot, "upstream"), dryRun);
-  copyDir(docsSrc, path.join(pystackRoot, "docs"), dryRun);
-  copyDir(templatesSrc, path.join(pystackRoot, "templates"), dryRun);
+  removeDir(path.join(pystackRoot, "docs"), dryRun);
+  removeDir(path.join(pystackRoot, "templates"), dryRun);
 
   writeFile(
     path.join(pystackRoot, "pystack.config.json"),
@@ -275,6 +289,11 @@ function verify() {
   ];
   for (const relativePath of installedChecks) {
     check(results, fs.existsSync(path.join(installTarget, relativePath)), "installed artifact exists", relativePath);
+  }
+
+  const removedInstallArtifacts = [".pystack/docs", ".pystack/templates"];
+  for (const relativePath of removedInstallArtifacts) {
+    check(results, !fs.existsSync(path.join(installTarget, relativePath)), "removed install artifact absent", relativePath);
   }
 
   let ok = true;
