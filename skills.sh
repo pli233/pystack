@@ -40,8 +40,10 @@ done
 mkdir -p "$TARGET"
 TARGET="$(cd "$TARGET" && pwd)"
 
-if [[ -f "./bin/pystack.js" && -d "./skills" && -d "./upstream" ]]; then
-  node ./bin/pystack.js init --target "$TARGET"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+if [[ -f "$SCRIPT_DIR/bin/pystack.js" && -d "$SCRIPT_DIR/skills" && -d "$SCRIPT_DIR/upstream" ]]; then
+  node "$SCRIPT_DIR/bin/pystack.js" init --target "$TARGET"
   exit 0
 fi
 
