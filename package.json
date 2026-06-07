@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Personal AI coding skills stack combining Superpowers, OpenSpec, and GStack into a PyStack workflow.",
   "type": "commonjs",
+  "private": true,
   "homepage": "https://github.com/pli233/pystack#readme",
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
     "skills/",
     "templates/",
     "upstream/",
+    "skills.sh",
     "index.html",
     "README.md",
     "LICENSE"

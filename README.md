@@ -23,21 +23,49 @@ pystack-brainstorm
 
 如果用户已经提供成熟文档，可以跳过 brainstorm，直接进入 review。
 
-## npx 使用
+## 使用方式
+
+### GitHub npx
+
+不需要发布 npm 包。`npx` 可以直接从 GitHub repo 拉取并运行：
 
 ```bash
-npx @pli233/pystack init --target .
-npx @pli233/pystack doctor
-npx @pli233/pystack verify
+npx github:pli233/pystack init --target .
+npx github:pli233/pystack doctor
+npx github:pli233/pystack verify
 ```
 
-本地开发时：
+如果你想固定某个分支或 tag：
+
+```bash
+npx github:pli233/pystack#main init --target .
+```
+
+### GitHub Clone
+
+```bash
+git clone https://github.com/pli233/pystack.git
+cd pystack
+./skills.sh --target /path/to/your/repo
+```
+
+### skills.sh 一行安装
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/pli233/pystack/main/skills.sh | bash -s -- --target .
+```
+
+### 本地开发
 
 ```bash
 node ./bin/pystack.js doctor
 node ./bin/pystack.js verify
 node ./bin/pystack.js init --target /tmp/pystack-demo
 ```
+
+## 不走 npm publish
+
+PyStack v0.1 不发布到 npm registry。`package.json` 只用于让 `npx github:pli233/pystack` 能识别 `pystack` bin。
 
 ## 关键目录
 
