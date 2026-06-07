@@ -25,34 +25,43 @@ pystack-brainstorm
 
 ## 使用方式
 
-### GitHub npx
+### skills.sh 官方 CLI
 
-不需要发布 npm 包。`npx` 可以直接从 GitHub repo 拉取并运行：
+PyStack v0.1 不发布到 npm registry。推荐通过 skills.sh 官方 CLI 从 GitHub 安装：
+
+```bash
+npx skills add pli233/pystack --skill pystack-workflow
+```
+
+如果你想安装 PyStack 的所有 wrapper skills：
+
+```bash
+npx skills add pli233/pystack --skill '*'
+```
+
+查看可安装的 PyStack skills：
+
+```bash
+npx skills add pli233/pystack --list
+```
+
+默认列表会显示 PyStack wrapper skills，以及原生 Superpowers `brainstorming`。不要使用 `--full-depth --skill '*'`，除非你明确想把 `upstream/` 里的 GStack/Superpowers 原生 skill 全部安装出来。
+
+### GitHub npx fallback
+
+如果你只是想把整个 PyStack 仓库结构复制到某个项目里，可以直接从 GitHub 运行 `pystack` bin：
 
 ```bash
 npx github:pli233/pystack init --target .
-npx github:pli233/pystack doctor
 npx github:pli233/pystack verify
 ```
 
-如果你想固定某个分支或 tag：
-
-```bash
-npx github:pli233/pystack#main init --target .
-```
-
-### GitHub Clone
+### GitHub Clone fallback
 
 ```bash
 git clone https://github.com/pli233/pystack.git
 cd pystack
-./skills.sh --target /path/to/your/repo
-```
-
-### skills.sh 一行安装
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/pli233/pystack/main/skills.sh | bash -s -- --target .
+node ./bin/pystack.js init --target /path/to/your/repo
 ```
 
 ### 本地开发
