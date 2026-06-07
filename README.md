@@ -73,6 +73,8 @@ npx skills add pli233/pystack --list
 npx github:pli233/pystack init --target .
 ```
 
+`pystack-workflow` 启动时会先检查 `.pystack/pystack.config.json`。如果当前仓库还没有 `.pystack`，它会要求先运行上面的 init 命令，再继续 workflow。
+
 验证安装：
 
 ```bash

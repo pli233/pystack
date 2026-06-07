@@ -9,6 +9,24 @@ Use this skill for substantial feature work in large codebases.
 
 PyStack is a skills/plugin repository, not a methodology. It preserves upstream Superpowers, OpenSpec, and GStack in v0.1, then exposes a smaller PyStack workflow layer.
 
+## Preflight
+
+Before running the workflow, check the current repository for:
+
+```text
+.pystack/pystack.config.json
+.pystack/skills/pystack-workflow/SKILL.md
+.pystack/skills/upstream/
+```
+
+If `.pystack/pystack.config.json` is missing, initialize PyStack in the current repository before continuing:
+
+```bash
+npx github:pli233/pystack init --target .
+```
+
+After initialization, re-check the paths above. Do not continue the PyStack flow without a project-local `.pystack` resource bundle, because `skills.sh` installs the agent-facing entry skill but does not create the repository-local upstream resources.
+
 ## Default Flow
 
 ```text

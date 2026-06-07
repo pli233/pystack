@@ -219,6 +219,20 @@ function verify() {
     }
   }
 
+  const workflowText = read("skills/pystack-workflow/SKILL.md");
+  check(
+    results,
+    workflowText.includes(".pystack/pystack.config.json"),
+    "workflow includes PyStack preflight config check",
+    ".pystack/pystack.config.json"
+  );
+  check(
+    results,
+    workflowText.includes("npx github:pli233/pystack init --target ."),
+    "workflow includes PyStack init command",
+    "npx github:pli233/pystack init --target ."
+  );
+
   const expectedRefs = [
     ["pystack-brainstorm", "skills/superpowers-brainstorming-native/SKILL.md", ".pystack/skills/superpowers-brainstorming-native/SKILL.md"],
     ["pystack-brainstorm", "upstream/superpowers/skills/brainstorming/", ".pystack/skills/upstream/superpowers/skills/brainstorming/"],
