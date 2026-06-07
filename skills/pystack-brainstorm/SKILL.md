@@ -10,13 +10,13 @@ This skill wraps the full native Superpowers Brainstorm capability.
 The native copy is preserved at:
 
 ```text
-skills/superpowers-brainstorming-native/
+.pystack/skills/superpowers-brainstorming-native/
 ```
 
 The upstream source is also preserved at:
 
 ```text
-upstream/superpowers/skills/brainstorming/
+.pystack/skills/upstream/superpowers/skills/brainstorming/
 ```
 
 ## Use Native Brainstorm First
@@ -24,7 +24,7 @@ upstream/superpowers/skills/brainstorming/
 Read and follow:
 
 ```text
-skills/superpowers-brainstorming-native/SKILL.md
+.pystack/skills/superpowers-brainstorming-native/SKILL.md
 ```
 
 Do not rewrite its process in v0.1. PyStack may add routing notes around it, but the native brainstorm capability remains intact.
@@ -50,4 +50,3 @@ pystack-review
 ## Skip Rule
 
 Brainstorm can be skipped only when the user provides a mature document or an existing approved OpenSpec change and explicitly indicates that execution can start from it.
-

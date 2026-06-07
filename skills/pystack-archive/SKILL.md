@@ -10,9 +10,9 @@ Use this immediately after `pystack-ship`.
 Reference upstream OpenSpec:
 
 ```text
-upstream/openspec/docs/cli.md
-upstream/openspec/docs/concepts.md
-upstream/openspec/bin/openspec.js
+.pystack/skills/upstream/openspec/docs/cli.md
+.pystack/skills/upstream/openspec/docs/concepts.md
+.pystack/skills/upstream/openspec/bin/openspec.js
 ```
 
 ## Archive Rule
@@ -33,4 +33,3 @@ PyStack workflow is complete only when:
 - ship has succeeded
 - OpenSpec archive has succeeded
 - the archive record points back to the implemented change
-

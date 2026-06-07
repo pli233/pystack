@@ -10,7 +10,7 @@ Use this after QA passes.
 Reference upstream GStack:
 
 ```text
-upstream/gstack/ship/SKILL.md
+.pystack/skills/upstream/gstack/ship/SKILL.md
 ```
 
 ## Ship Rule
@@ -26,4 +26,3 @@ pystack-archive
 ## Hard Rule
 
 Ship without OpenSpec archive is incomplete.
-

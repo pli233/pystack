@@ -47,8 +47,8 @@ Invoke `pystack-brainstorm`.
 This wraps the full native Superpowers Brainstorm capability preserved at:
 
 ```text
-skills/superpowers-brainstorming-native/
-upstream/superpowers/skills/brainstorming/
+.pystack/skills/superpowers-brainstorming-native/
+.pystack/skills/upstream/superpowers/skills/brainstorming/
 ```
 
 Expected output:
@@ -127,4 +127,4 @@ Ship is not complete until OpenSpec archive is complete.
 - Do not invent Stack archive. Archive means OpenSpec archive.
 - Do not remove upstream Superpowers/OpenSpec/GStack in v0.1.
 - PyStack wrappers may reference upstream skills and commands, but OpenSpec owns specs and archive.
-
+- In a full PyStack workspace install, wrapper skills live under `.pystack/skills/` and upstream sources live under `.pystack/skills/upstream/`.

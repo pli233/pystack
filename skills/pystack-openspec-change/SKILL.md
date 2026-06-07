@@ -10,10 +10,10 @@ Use this only after `pystack-review` approves the idea or mature document.
 Reference upstream OpenSpec:
 
 ```text
-upstream/openspec/
-upstream/openspec/docs/cli.md
-upstream/openspec/docs/concepts.md
-upstream/openspec/bin/openspec.js
+.pystack/skills/upstream/openspec/
+.pystack/skills/upstream/openspec/docs/cli.md
+.pystack/skills/upstream/openspec/docs/concepts.md
+.pystack/skills/upstream/openspec/bin/openspec.js
 ```
 
 ## Required Artifacts
@@ -46,4 +46,3 @@ After the OpenSpec change exists and is coherent, hand off to:
 ```text
 pystack-tdd
 ```
-

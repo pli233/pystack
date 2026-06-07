@@ -4,8 +4,8 @@ PyStack 是培元自用的 AI coding skills 仓库雏形。它不是敏捷方法
 
 ## v0.1 原则
 
-- 先保留三套本体：Superpowers、OpenSpec、GStack 当前都放在 `upstream/`。
-- 原生 Superpowers Brainstorm 完整复制到 `skills/superpowers-brainstorming-native/`。
+- 先保留三套本体：Superpowers、OpenSpec、GStack 当前都放在 `.pystack/skills/upstream/`。
+- 原生 Superpowers Brainstorm 完整复制到 `.pystack/skills/superpowers-brainstorming-native/`。
 - PyStack 自己只做外层编排：`pystack-workflow` 是主能力，其它都是子能力。
 - 当前不删减任何上游能力；先跑通完整 workflow，再做裁剪。
 
@@ -27,7 +27,7 @@ pystack-brainstorm
 
 ### skills.sh 官方 CLI
 
-PyStack v0.1 不发布到 npm registry。推荐通过 skills.sh 官方 CLI 从 GitHub 安装：
+PyStack v0.1 不发布到 npm registry。通过 skills.sh 官方 CLI 可以安装单个 skill 到 agent 的 skill 目录：
 
 ```bash
 npx skills add pli233/pystack --skill pystack-workflow
@@ -47,12 +47,35 @@ npx skills add pli233/pystack --list
 
 默认列表会显示 PyStack wrapper skills，以及原生 Superpowers `brainstorming`。不要使用 `--full-depth --skill '*'`，除非你明确想把 `upstream/` 里的 GStack/Superpowers 原生 skill 全部安装出来。
 
-### GitHub npx fallback
+### 完整 `.pystack` 工作区安装
 
-如果你只是想把整个 PyStack 仓库结构复制到某个项目里，可以直接从 GitHub 运行 `pystack` bin：
+如果你想要项目里出现下面这种完整结构：
+
+```text
+.pystack/
+  skills/
+    pystack-archive/
+    pystack-brainstorm/
+    pystack-openspec-change/
+    pystack-qa/
+    pystack-review/
+    pystack-ship/
+    pystack-tdd/
+    pystack-workflow/
+    superpowers-brainstorming-native/
+    upstream/
+  pystack.config.json
+```
+
+使用 GitHub npx 运行 PyStack init：
 
 ```bash
 npx github:pli233/pystack init --target .
+```
+
+验证安装：
+
+```bash
 npx github:pli233/pystack verify
 ```
 
@@ -79,19 +102,20 @@ PyStack v0.1 不发布到 npm registry。`package.json` 只用于让 `npx github
 ## 关键目录
 
 ```text
-skills/
-  pystack-workflow/
-  pystack-brainstorm/
-  pystack-review/
-  pystack-openspec-change/
-  pystack-tdd/
-  pystack-qa/
-  pystack-ship/
-  pystack-archive/
-  superpowers-brainstorming-native/
-
-upstream/
-  superpowers/
-  openspec/
-  gstack/
+.pystack/
+  skills/
+    pystack-workflow/
+    pystack-brainstorm/
+    pystack-review/
+    pystack-openspec-change/
+    pystack-tdd/
+    pystack-qa/
+    pystack-ship/
+    pystack-archive/
+    superpowers-brainstorming-native/
+    upstream/
+      superpowers/
+      openspec/
+      gstack/
+  pystack.config.json
 ```

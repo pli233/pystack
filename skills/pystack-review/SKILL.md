@@ -12,11 +12,11 @@ This is not code review. It is a pre-OpenSpec readiness review.
 Reference upstream GStack capabilities:
 
 ```text
-upstream/gstack/autoplan/SKILL.md
-upstream/gstack/plan-ceo-review/SKILL.md
-upstream/gstack/plan-eng-review/SKILL.md
-upstream/gstack/plan-design-review/SKILL.md
-upstream/gstack/review/SKILL.md
+.pystack/skills/upstream/gstack/autoplan/SKILL.md
+.pystack/skills/upstream/gstack/plan-ceo-review/SKILL.md
+.pystack/skills/upstream/gstack/plan-eng-review/SKILL.md
+.pystack/skills/upstream/gstack/plan-design-review/SKILL.md
+.pystack/skills/upstream/gstack/review/SKILL.md
 ```
 
 ## Review Questions
@@ -45,4 +45,3 @@ If approved, hand off to:
 ```text
 pystack-openspec-change
 ```
-

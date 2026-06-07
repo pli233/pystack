@@ -16,9 +16,9 @@ Usage:
   pystack where
 
 Examples:
-  npx @pli233/pystack init --target .
-  npx @pli233/pystack doctor
-  npx @pli233/pystack verify
+  npx github:pli233/pystack init --target .
+  npx github:pli233/pystack doctor
+  npx github:pli233/pystack verify
 `);
 }
 
@@ -79,18 +79,23 @@ function init(target, dryRun) {
   const docsSrc = path.join(root, "docs");
   const templatesSrc = path.join(root, "templates");
   const upstreamSrc = path.join(root, "upstream");
+  const pystackRoot = path.join(target, ".pystack");
+  const pystackSkillsRoot = path.join(pystackRoot, "skills");
 
-  copyDir(skillsSrc, path.join(target, "skills"), dryRun);
-  copyDir(docsSrc, path.join(target, "docs", "pystack"), dryRun);
-  copyDir(templatesSrc, path.join(target, "pystack-templates"), dryRun);
-  copyDir(upstreamSrc, path.join(target, "upstream"), dryRun);
+  copyDir(skillsSrc, pystackSkillsRoot, dryRun);
+  copyDir(upstreamSrc, path.join(pystackSkillsRoot, "upstream"), dryRun);
+  copyDir(docsSrc, path.join(pystackRoot, "docs"), dryRun);
+  copyDir(templatesSrc, path.join(pystackRoot, "templates"), dryRun);
 
   writeFile(
-    path.join(target, "pystack.config.json"),
+    path.join(pystackRoot, "pystack.config.json"),
     JSON.stringify(
       {
         name: "pystack",
         version: "0.1.0",
+        installRoot: ".pystack",
+        skillsRoot: ".pystack/skills",
+        upstreamRoot: ".pystack/skills/upstream",
         workflowSkill: "pystack-workflow",
         defaultFlow: [
           "pystack-brainstorm",
@@ -109,7 +114,7 @@ function init(target, dryRun) {
     dryRun
   );
 
-  console.log(`${dryRun ? "Dry run complete" : "PyStack initialized"} at ${target}`);
+  console.log(`${dryRun ? "Dry run complete" : "PyStack initialized"} at ${pystackRoot}`);
 }
 
 function doctor() {
@@ -201,22 +206,22 @@ function verify() {
   }
 
   const expectedRefs = [
-    ["pystack-brainstorm", "skills/superpowers-brainstorming-native/SKILL.md"],
-    ["pystack-brainstorm", "upstream/superpowers/skills/brainstorming/"],
-    ["pystack-review", "upstream/gstack/autoplan/SKILL.md"],
-    ["pystack-review", "upstream/gstack/review/SKILL.md"],
-    ["pystack-openspec-change", "upstream/openspec/bin/openspec.js"],
-    ["pystack-tdd", "upstream/superpowers/skills/test-driven-development/SKILL.md"],
-    ["pystack-qa", "upstream/gstack/qa/SKILL.md"],
-    ["pystack-ship", "upstream/gstack/ship/SKILL.md"],
-    ["pystack-archive", "upstream/openspec/bin/openspec.js"]
+    ["pystack-brainstorm", "skills/superpowers-brainstorming-native/SKILL.md", ".pystack/skills/superpowers-brainstorming-native/SKILL.md"],
+    ["pystack-brainstorm", "upstream/superpowers/skills/brainstorming/", ".pystack/skills/upstream/superpowers/skills/brainstorming/"],
+    ["pystack-review", "upstream/gstack/autoplan/SKILL.md", ".pystack/skills/upstream/gstack/autoplan/SKILL.md"],
+    ["pystack-review", "upstream/gstack/review/SKILL.md", ".pystack/skills/upstream/gstack/review/SKILL.md"],
+    ["pystack-openspec-change", "upstream/openspec/bin/openspec.js", ".pystack/skills/upstream/openspec/bin/openspec.js"],
+    ["pystack-tdd", "upstream/superpowers/skills/test-driven-development/SKILL.md", ".pystack/skills/upstream/superpowers/skills/test-driven-development/SKILL.md"],
+    ["pystack-qa", "upstream/gstack/qa/SKILL.md", ".pystack/skills/upstream/gstack/qa/SKILL.md"],
+    ["pystack-ship", "upstream/gstack/ship/SKILL.md", ".pystack/skills/upstream/gstack/ship/SKILL.md"],
+    ["pystack-archive", "upstream/openspec/bin/openspec.js", ".pystack/skills/upstream/openspec/bin/openspec.js"]
   ];
 
-  for (const [skill, referencedPath] of expectedRefs) {
+  for (const [skill, sourcePath, installedPath] of expectedRefs) {
     const skillText = read(`skills/${skill}/SKILL.md`);
-    const exists = fs.existsSync(path.join(root, referencedPath));
-    check(results, exists, `${skill} referenced upstream path exists`, referencedPath);
-    check(results, skillText.includes(referencedPath), `${skill} mentions referenced path`, referencedPath);
+    const exists = fs.existsSync(path.join(root, sourcePath));
+    check(results, exists, `${skill} referenced source path exists`, sourcePath);
+    check(results, skillText.includes(installedPath), `${skill} mentions installed path`, installedPath);
   }
 
   const upstreamRepos = [
@@ -261,12 +266,12 @@ function verify() {
   const installTarget = path.join(os.tmpdir(), `pystack-verify-${Date.now()}`);
   init(installTarget, false);
   const installedChecks = [
-    "skills/pystack-workflow/SKILL.md",
-    "skills/superpowers-brainstorming-native/SKILL.md",
-    "upstream/superpowers/skills/brainstorming/SKILL.md",
-    "upstream/openspec/bin/openspec.js",
-    "upstream/gstack/qa/SKILL.md",
-    "pystack.config.json"
+    ".pystack/skills/pystack-workflow/SKILL.md",
+    ".pystack/skills/superpowers-brainstorming-native/SKILL.md",
+    ".pystack/skills/upstream/superpowers/skills/brainstorming/SKILL.md",
+    ".pystack/skills/upstream/openspec/bin/openspec.js",
+    ".pystack/skills/upstream/gstack/qa/SKILL.md",
+    ".pystack/pystack.config.json"
   ];
   for (const relativePath of installedChecks) {
     check(results, fs.existsSync(path.join(installTarget, relativePath)), "installed artifact exists", relativePath);

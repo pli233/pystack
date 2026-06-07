@@ -10,7 +10,7 @@ Use this after a formal OpenSpec change exists.
 Reference upstream Superpowers:
 
 ```text
-upstream/superpowers/skills/test-driven-development/SKILL.md
+.pystack/skills/upstream/superpowers/skills/test-driven-development/SKILL.md
 ```
 
 ## Default Cycle
@@ -34,4 +34,3 @@ After implementation and verification, hand off to:
 ```text
 pystack-qa
 ```
-
