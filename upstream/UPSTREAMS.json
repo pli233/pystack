@@ -1,0 +1,19 @@
+{
+  "gstack": {
+    "remote": "https://github.com/garrytan/gstack.git",
+    "commit": "cab774cced06e0a36b3b4b1518b8c968707f7e2f",
+    "summary": "v1.56.0.0 Token-reduction Phase B + AUQ paranoid safety net (#1849)"
+  },
+  "openspec": {
+    "remote": "https://github.com/Fission-AI/OpenSpec.git",
+    "commit": "1b06fddd59d8e592d5b5794a1970b22867e85b1f",
+    "summary": "Version Packages (#1166)",
+    "tag": "v1.4.1"
+  },
+  "superpowers": {
+    "remote": "https://github.com/obra/superpowers.git",
+    "commit": "6fd4507659784c351abbd2bc264c7162cfd386dc",
+    "summary": "Require contributors to disclose authoring environment and target dev"
+  }
+}
+

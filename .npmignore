@@ -1,0 +1,14 @@
+.DS_Store
+node_modules/
+npm-debug.log*
+*.tgz
+.env
+.env.*
+
+# Do not publish nested git metadata from vendored upstream repositories.
+upstream/**/.git
+upstream/**/.git/**
+
+# Runtime socket/file produced by GStack browser tooling.
+upstream/gstack/connect-chrome
+

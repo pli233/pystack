@@ -1,0 +1,41 @@
+{
+  "name": "@pli233/pystack",
+  "version": "0.1.0",
+  "description": "Personal AI coding skills stack combining Superpowers, OpenSpec, and GStack into a PyStack workflow.",
+  "type": "commonjs",
+  "homepage": "https://github.com/pli233/pystack#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pli233/pystack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pli233/pystack/issues"
+  },
+  "bin": {
+    "pystack": "./bin/pystack.js"
+  },
+  "files": [
+    "bin/",
+    "docs/",
+    "skills/",
+    "templates/",
+    "upstream/",
+    "index.html",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "doctor": "node ./bin/pystack.js doctor",
+    "verify": "node ./bin/pystack.js verify",
+    "init:dry": "node ./bin/pystack.js init --dry-run"
+  },
+  "keywords": [
+    "ai-coding",
+    "skills",
+    "openspec",
+    "superpowers",
+    "gstack",
+    "pystack"
+  ],
+  "license": "MIT"
+}
