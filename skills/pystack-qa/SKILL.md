@@ -7,11 +7,11 @@ description: PyStack QA layer based on GStack QA skills.
 
 Use this after implementation passes its TDD checks.
 
-Reference upstream GStack:
+Use installed native GStack QA:
 
 ```text
-.pystack/skills/upstream/gstack/qa/SKILL.md
-.pystack/skills/upstream/gstack/qa-only/SKILL.md
+gstack qa
+gstack qa-only
 ```
 
 ## QA Scope

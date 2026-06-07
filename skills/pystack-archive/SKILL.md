@@ -7,12 +7,12 @@ description: PyStack final archive layer based on OpenSpec archive.
 
 Use this immediately after `pystack-ship`.
 
-Reference upstream OpenSpec:
+Use installed native OpenSpec:
 
 ```text
-.pystack/skills/upstream/openspec/docs/cli.md
-.pystack/skills/upstream/openspec/docs/concepts.md
-.pystack/skills/upstream/openspec/bin/openspec.js
+openspec archive
+openspec/changes/
+openspec/specs/
 ```
 
 ## Archive Rule

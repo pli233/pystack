@@ -9,14 +9,12 @@ Use this after PyStack Brainstorm or after the user provides a mature document.
 
 This is not code review. It is a pre-OpenSpec readiness review.
 
-Reference upstream GStack capabilities:
+Use installed native GStack capabilities:
 
 ```text
-.pystack/skills/upstream/gstack/autoplan/SKILL.md
-.pystack/skills/upstream/gstack/plan-ceo-review/SKILL.md
-.pystack/skills/upstream/gstack/plan-eng-review/SKILL.md
-.pystack/skills/upstream/gstack/plan-design-review/SKILL.md
-.pystack/skills/upstream/gstack/review/SKILL.md
+gstack autoplan
+gstack plan review skills
+gstack review
 ```
 
 ## Review Questions

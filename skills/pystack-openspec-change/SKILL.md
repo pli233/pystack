@@ -7,13 +7,12 @@ description: PyStack wrapper for creating formal OpenSpec change artifacts after
 
 Use this only after `pystack-review` approves the idea or mature document.
 
-Reference upstream OpenSpec:
+Use installed native OpenSpec:
 
 ```text
-.pystack/skills/upstream/openspec/
-.pystack/skills/upstream/openspec/docs/cli.md
-.pystack/skills/upstream/openspec/docs/concepts.md
-.pystack/skills/upstream/openspec/bin/openspec.js
+openspec --version
+openspec init
+openspec/changes/
 ```
 
 ## Required Artifacts

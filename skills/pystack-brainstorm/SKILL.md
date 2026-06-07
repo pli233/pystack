@@ -7,27 +7,11 @@ description: PyStack wrapper around the full native Superpowers Brainstorm capab
 
 This skill wraps the full native Superpowers Brainstorm capability.
 
-The native copy is preserved at:
-
-```text
-.pystack/skills/superpowers-brainstorming-native/
-```
-
-The upstream source is also preserved at:
-
-```text
-.pystack/skills/upstream/superpowers/skills/brainstorming/
-```
-
 ## Use Native Brainstorm First
 
-Read and follow:
+Use the installed native Superpowers brainstorming skill/process. Do not use a PyStack-bundled copy; PyStack does not vendor Superpowers.
 
-```text
-.pystack/skills/superpowers-brainstorming-native/SKILL.md
-```
-
-Do not rewrite its process in v0.1. PyStack may add routing notes around it, but the native brainstorm capability remains intact.
+Do not rewrite the native brainstorming process. PyStack may add routing notes around it, but the native brainstorm capability remains intact.
 
 ## PyStack Adaptation
 

@@ -236,8 +236,8 @@
       <div class="tag"><span class="dot"></span> PyStack v0.1 · Skills Repository</div>
       <h1>PyStack</h1>
       <p class="lead">
-        培元自用的 AI coding skills 仓库。当前版本先完整保留 Superpowers、OpenSpec、GStack，
-        再抽象出 PyStackWorkflow 和一组子能力，先跑通流程，后续再删减。
+        培元自用的 AI coding workflow skills 仓库。先安装并初始化原生 Superpowers、GStack、OpenSpec，
+        再安装 PyStack 作为 workflow 统管层。
       </p>
       <div class="grid">
         <div class="panel pad">
@@ -251,9 +251,15 @@
           </div>
         </div>
         <div class="panel pad">
-          <div class="label">npx install shape</div>
-          <pre class="code"><code>npx @pli233/pystack init --target .
-npx @pli233/pystack doctor
+          <div class="label">Install Order</div>
+          <pre class="code"><code># 1. Install native Superpowers
+# 2. Install native GStack
+# 3. Install + init OpenSpec
+npm install -g @fission-ai/openspec@latest
+openspec init
+
+# 4. Install PyStack last
+npx skills add pli233/pystack --skill '*'
 
 skills/
   pystack-workflow/
@@ -271,19 +277,19 @@ skills/
 
   <main>
     <section class="wrap">
-      <h2>三套上游先保留</h2>
+      <h2>三套上游先原生安装</h2>
       <div class="sources">
         <article class="source">
           <h3>Superpowers</h3>
-          <p>完整保留本体。原生 Brainstorm 已复制到 `skills/superpowers-brainstorming-native/`，PyStackBrainstorm 只做外层包装。</p>
+          <p>按 Codex、Claude Code 等 harness 的原生方式安装。PyStackBrainstorm 只路由到原生 Brainstorm。</p>
         </article>
         <article class="source">
           <h3>OpenSpec</h3>
-          <p>完整保留 CLI、command、spec/change/archive 结构。OpenSpec 是唯一规格和归档来源。</p>
+          <p>通过官方 CLI 安装并在目标仓库运行 openspec init。OpenSpec 是唯一规格和归档来源。</p>
         </article>
         <article class="source">
           <h3>GStack</h3>
-          <p>保留 autoplan、review、QA、ship 能力。PyStackReview 在 OpenSpec change 之前模拟团队意见。</p>
+          <p>通过 GStack 自己的 setup 安装。PyStackReview、QA、Ship 只协调已安装的原生 GStack 能力。</p>
         </article>
       </div>
     </section>
@@ -296,8 +302,8 @@ skills/
           <p>PyStack 是插件/skills 仓库，不是 agile 框架，也不对外泛化。</p>
         </article>
         <article class="panel rule">
-          <h3>先保留再删减</h3>
-          <p>当前不移除 Superpowers、OpenSpec、GStack 本体；先跑通 workflow。</p>
+          <h3>不打包上游</h3>
+          <p>PyStack 不复制 Superpowers、OpenSpec、GStack 本体；它只统管 workflow。</p>
         </article>
         <article class="panel rule">
           <h3>Brainstorm 可判断</h3>
@@ -311,7 +317,6 @@ skills/
     </section>
   </main>
 
-  <footer class="wrap">PyStack v0.1 · Superpowers + OpenSpec + GStack preserved, PyStack workflow on top.</footer>
+  <footer class="wrap">PyStack v0.1 · Native Superpowers + OpenSpec + GStack, PyStack workflow on top.</footer>
 </body>
 </html>
-

@@ -5,27 +5,28 @@ description: Main PyStack workflow for large-codebase feature delivery. Orchestr
 
 # PyStack Workflow
 
-Use this skill for substantial feature work in large codebases.
+Use this skill for substantial feature work in large codebases after native Superpowers, GStack, and OpenSpec are already installed and initialized.
 
-PyStack is a skills/plugin repository, not a methodology. It preserves upstream Superpowers, OpenSpec, and GStack in v0.1, then exposes a smaller PyStack workflow layer.
+PyStack is a workflow coordinator. It does not vendor or replace Superpowers, GStack, or OpenSpec.
 
 ## Preflight
 
-Before running the workflow, check the current repository for:
+Before running the workflow, confirm the native stack is ready:
 
-```text
-.pystack/pystack.config.json
-.pystack/skills/pystack-workflow/SKILL.md
-.pystack/skills/upstream/
-```
+- Superpowers is installed in the active agent/harness.
+- GStack is installed and set up for the active agent.
+- OpenSpec CLI is installed; `openspec --version` works.
+- The current repository has been initialized with `openspec init`.
+- PyStack skills were installed after those native tools.
 
-If `.pystack/pystack.config.json` is missing, initialize PyStack in the current repository before continuing:
+If OpenSpec is missing, stop and ask the user to install and initialize it:
 
 ```bash
-npx github:pli233/pystack init --target .
+npm install -g @fission-ai/openspec@latest
+openspec init
 ```
 
-After initialization, re-check the paths above. Do not continue the PyStack flow without a project-local `.pystack` resource bundle, because `skills.sh` installs the agent-facing entry skill but does not create the repository-local upstream resources.
+If Superpowers or GStack is missing, stop and ask the user to install the native tool first. Do not create `.pystack`, do not copy upstream repositories, and do not simulate the native installations.
 
 ## Default Flow
 
@@ -62,11 +63,10 @@ If skipping brainstorm, record why in the workflow notes.
 
 Invoke `pystack-brainstorm`.
 
-This wraps the full native Superpowers Brainstorm capability preserved at:
+This wraps the installed native Superpowers Brainstorm capability:
 
 ```text
-.pystack/skills/superpowers-brainstorming-native/
-.pystack/skills/upstream/superpowers/skills/brainstorming/
+installed Superpowers brainstorming
 ```
 
 Expected output:
@@ -143,6 +143,6 @@ Ship is not complete until OpenSpec archive is complete.
 
 - Do not create a second source of truth.
 - Do not invent Stack archive. Archive means OpenSpec archive.
-- Do not remove upstream Superpowers/OpenSpec/GStack in v0.1.
-- PyStack wrappers may reference upstream skills and commands, but OpenSpec owns specs and archive.
-- In a full PyStack workspace install, wrapper skills live under `.pystack/skills/` and upstream sources live under `.pystack/skills/upstream/`.
+- Do not create `.pystack` as a runtime bundle.
+- Do not copy upstream Superpowers/OpenSpec/GStack into the project.
+- PyStack wrappers coordinate native skills and commands; OpenSpec owns specs and archive.

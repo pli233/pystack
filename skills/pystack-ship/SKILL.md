@@ -7,10 +7,10 @@ description: PyStack ship layer based on GStack ship, followed by OpenSpec archi
 
 Use this after QA passes.
 
-Reference upstream GStack:
+Use installed native GStack ship:
 
 ```text
-.pystack/skills/upstream/gstack/ship/SKILL.md
+gstack ship
 ```
 
 ## Ship Rule

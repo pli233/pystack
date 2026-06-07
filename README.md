@@ -1,13 +1,77 @@
 # PyStack
 
-PyStack 是培元自用的 AI coding skills 仓库雏形。它不是敏捷方法论，也不是通用项目模板；它是一个插件/skills 仓库，把 Superpowers、OpenSpec、GStack 里当前需要的能力先完整保留下来，再抽象成 PyStack 自己的 workflow。
+PyStack 是培元自用的 AI coding workflow skills 仓库。它不是 Superpowers、OpenSpec、GStack 的二次打包，也不在项目里 vendored 这三套本体。
 
-## v0.1 原则
+PyStack 的定位只有一个：在你已经安装并初始化好原生 Superpowers、GStack、OpenSpec 之后，把它们串成一个统一 workflow。
 
-- 先保留三套本体：Superpowers、OpenSpec、GStack 当前都放在 `.pystack/skills/upstream/`。
-- 原生 Superpowers Brainstorm 完整复制到 `.pystack/skills/superpowers-brainstorming-native/`。
-- PyStack 自己只做外层编排：`pystack-workflow` 是主能力，其它都是子能力。
-- 当前不删减任何上游能力；先跑通完整 workflow，再做裁剪。
+## 安装顺序
+
+### 1. 安装 Superpowers
+
+Superpowers 按 agent/harness 单独安装。
+
+Codex CLI / Codex App：
+
+```text
+/plugins
+```
+
+然后搜索并安装 `superpowers`。
+
+Claude Code：
+
+```text
+/plugin marketplace add obra/superpowers-marketplace
+/plugin install superpowers@superpowers-marketplace
+```
+
+### 2. 安装 GStack
+
+Codex 推荐：
+
+```bash
+git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git ~/gstack
+cd ~/gstack
+./setup --host codex
+```
+
+Claude Code 推荐：
+
+```bash
+git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack
+cd ~/.claude/skills/gstack
+./setup
+```
+
+如果你要在当前仓库启用 GStack team mode，再按 GStack 原生说明运行它自己的 team setup。
+
+### 3. 安装并初始化 OpenSpec
+
+```bash
+npm install -g @fission-ai/openspec@latest
+openspec --version
+openspec init
+```
+
+OpenSpec 是唯一的 spec/change/archive 真相源。PyStack 不创建第二套 archive。
+
+### 4. 最后安装 PyStack skills
+
+```bash
+npx skills add pli233/pystack --skill '*'
+```
+
+只装入口 workflow 也可以：
+
+```bash
+npx skills add pli233/pystack --skill pystack-workflow
+```
+
+查看可安装 skills：
+
+```bash
+npx skills add pli233/pystack --list
+```
 
 ## 默认 Workflow
 
@@ -23,101 +87,38 @@ pystack-brainstorm
 
 如果用户已经提供成熟文档，可以跳过 brainstorm，直接进入 review。
 
-## 使用方式
+## PyStack 不做什么
 
-### skills.sh 官方 CLI
+- 不复制 Superpowers 本体。
+- 不复制 GStack 本体。
+- 不复制 OpenSpec 本体。
+- 不生成 `.pystack/` 工作区。
+- 不替代 `openspec init`。
+- 不发明 Stack archive。
 
-PyStack v0.1 不发布到 npm registry。通过 skills.sh 官方 CLI 可以安装单个 skill 到 agent 的 skill 目录：
-
-```bash
-npx skills add pli233/pystack --skill pystack-workflow
-```
-
-如果你想安装 PyStack 的所有 wrapper skills：
-
-```bash
-npx skills add pli233/pystack --skill '*'
-```
-
-查看可安装的 PyStack skills：
-
-```bash
-npx skills add pli233/pystack --list
-```
-
-默认列表会显示 PyStack wrapper skills，以及原生 Superpowers `brainstorming`。不要使用 `--full-depth --skill '*'`，除非你明确想把 `upstream/` 里的 GStack/Superpowers 原生 skill 全部安装出来。
-
-### 完整 `.pystack` 工作区安装
-
-如果你想要项目里出现下面这种完整结构：
-
-```text
-.pystack/
-  skills/
-    pystack-archive/
-    pystack-brainstorm/
-    pystack-openspec-change/
-    pystack-qa/
-    pystack-review/
-    pystack-ship/
-    pystack-tdd/
-    pystack-workflow/
-    superpowers-brainstorming-native/
-    upstream/
-  pystack.config.json
-```
-
-使用 GitHub npx 运行 PyStack init：
-
-```bash
-npx github:pli233/pystack init --target .
-```
-
-`pystack-workflow` 启动时会先检查 `.pystack/pystack.config.json`。如果当前仓库还没有 `.pystack`，它会要求先运行上面的 init 命令，再继续 workflow。
-
-验证安装：
-
-```bash
-npx github:pli233/pystack verify
-```
-
-### GitHub Clone fallback
-
-```bash
-git clone https://github.com/pli233/pystack.git
-cd pystack
-node ./bin/pystack.js init --target /path/to/your/repo
-```
-
-### 本地开发
+## 本地开发
 
 ```bash
 node ./bin/pystack.js doctor
 node ./bin/pystack.js verify
-node ./bin/pystack.js init --target /tmp/pystack-demo
 ```
 
-## 不走 npm publish
-
-PyStack v0.1 不发布到 npm registry。`package.json` 只用于让 `npx github:pli233/pystack` 能识别 `pystack` bin。
+`pystack init` 已废弃；新模型下没有项目内 `.pystack` 初始化步骤。
 
 ## 关键目录
 
 ```text
-.pystack/
-  skills/
-    pystack-workflow/
-    pystack-brainstorm/
-    pystack-review/
-    pystack-openspec-change/
-    pystack-tdd/
-    pystack-qa/
-    pystack-ship/
-    pystack-archive/
-    superpowers-brainstorming-native/
-    upstream/
-      superpowers/
-      openspec/
-      gstack/
-  pystack.config.json
+skills/
+  pystack-workflow/
+  pystack-brainstorm/
+  pystack-review/
+  pystack-openspec-change/
+  pystack-tdd/
+  pystack-qa/
+  pystack-ship/
+  pystack-archive/
 ```
+
+## 不走 npm publish
+
+PyStack v0.1 不发布到 npm registry。`package.json` 只用于让 GitHub/npm tooling 能识别仓库里的 bin 和文件清单。

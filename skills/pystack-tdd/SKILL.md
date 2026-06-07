@@ -7,10 +7,10 @@ description: PyStack implementation discipline based on Superpowers test-driven-
 
 Use this after a formal OpenSpec change exists.
 
-Reference upstream Superpowers:
+Use installed native Superpowers TDD:
 
 ```text
-.pystack/skills/upstream/superpowers/skills/test-driven-development/SKILL.md
+Superpowers test-driven-development
 ```
 
 ## Default Cycle
